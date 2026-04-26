@@ -5,6 +5,7 @@ import Login from './components/Login';
 import SimulationForm from './components/SimulationForm';
 import Dashboard from './components/Dashboard';
 import RefinementPanel from './components/RefinementPanel';
+import Footer from './components/Footer';
 import ReportViewer from './components/ReportViewer';
 import { runSimulation, refinePolicy, generateReport } from './services/geminiService';
 
@@ -56,30 +57,36 @@ const App = () => {
     }
   };
 
-  if (view === 'login') return <Login onBack={() => setView('landing')} />;
-
   return (
-    <div className="min-h-screen bg-[#050816] text-slate-100 selection:bg-blue-500/30">
-      <Header 
-        onHome={() => setView('landing')}
-        onSignIn={() => setView('login')}
-        onStart={() => setView('simulator')}
-        showNav={view === 'simulator'}
-      />
+    <div className="min-h-screen bg-[#050816] text-slate-100 selection:bg-blue-500/30 flex flex-col">
+      {view !== 'login' && (
+        <Header 
+          onHome={() => setView('landing')}
+          onSignIn={() => setView('login')}
+          onStart={() => setView('simulator')}
+          showNav={view === 'simulator'}
+        />
+      )}
 
-      <main className="max-w-7xl mx-auto px-6 py-12">
-        {view === 'landing' ? (
-          <Hero onStart={() => setView('simulator')} />
-        ) : (
-          <div className="space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700">
-            <div className="text-center mb-16">
-              <h1 className="text-5xl font-black mb-4 tracking-tight">Pulse Command</h1>
+      <main className="flex-grow relative">
+        {view === 'landing' && (
+          <div className="max-w-7xl mx-auto px-6">
+            <Hero onStart={() => setView('simulator')} />
+          </div>
+        )}
+        
+        {view === 'login' && <Login onBack={() => setView('landing')} />}
+        
+        {view === 'simulator' && (
+          <div className="max-w-7xl mx-auto px-6 py-8 space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700 min-h-[calc(100vh-80px)]">
+            <div className="text-center mb-8">
+              <h1 className="text-5xl font-black mb-4 tracking-tight">RAAWA AI</h1>
               <p className="text-slate-500 font-medium text-lg uppercase tracking-widest">
                 Predicting Human Resonance via Multi-Agent Personas
               </p>
             </div>
 
-            <SimulationForm onSubmit={handleStartSimulation} isLoading={isLoading} />
+            <SimulationForm onRun={handleStartSimulation} isLoading={isLoading} />
 
             {result && (
               <Dashboard 
@@ -100,6 +107,8 @@ const App = () => {
           </div>
         )}
       </main>
+
+      <Footer />
 
       {report && (
         <ReportViewer 
