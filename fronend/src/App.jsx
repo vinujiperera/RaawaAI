@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Login from './components/Login';
+import SignUp from './components/SignUp';
 import SimulationForm from './components/SimulationForm';
 import Dashboard from './components/Dashboard';
 import RefinementPanel from './components/RefinementPanel';
-import Footer from './components/Footer';
 import ReportViewer from './components/ReportViewer';
+import Footer from './components/Footer';
 import { runSimulation, refinePolicy, generateReport } from './services/geminiService';
 
 const App = () => {
@@ -59,7 +60,7 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-[#050816] text-slate-100 selection:bg-blue-500/30 flex flex-col">
-      {view !== 'login' && (
+      {view !== 'login' && view !== 'signup' && (
         <Header 
           onHome={() => setView('landing')}
           onSignIn={() => setView('login')}
@@ -75,7 +76,19 @@ const App = () => {
           </div>
         )}
         
-        {view === 'login' && <Login onBack={() => setView('landing')} />}
+        {view === 'login' && (
+          <Login 
+            onBack={() => setView('landing')} 
+            onSignUp={() => setView('signup')} 
+          />
+        )}
+
+        {view === 'signup' && (
+          <SignUp 
+            onBack={() => setView('landing')} 
+            onSignIn={() => setView('login')} 
+          />
+        )}
         
         {view === 'simulator' && (
           <div className="max-w-7xl mx-auto px-6 py-8 space-y-12 animate-in fade-in slide-in-from-bottom-4 duration-700 min-h-[calc(100vh-80px)]">

@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
-import { Mail, Lock, Eye, EyeOff, X } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, X, ChevronDown } from 'lucide-react';
 
-const Login = ({ onBack }) => {
+const Login = ({ onBack, onSignUp }) => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const scrollToContent = () => {
+    window.scrollBy({ top: 300, behavior: 'smooth' });
+  };
 
   return (
     <div className="w-full text-slate-100 flex flex-col font-sans">
@@ -28,14 +32,23 @@ const Login = ({ onBack }) => {
       </header>
 
       {/* Main content - Forced to fill a large portion of viewport to push footer down */}
-      <main className="min-h-screen flex flex-col items-center justify-center relative px-6 py-8 pb-20">
+      <main className="min-h-screen flex flex-col items-center justify-center relative px-6 py-12 pb-32">
         {/* Close Button */}
         <button 
           onClick={onBack}
-          className="absolute top-8 right-12 text-slate-400 hover:text-white transition-colors"
+          className="absolute top-8 right-12 text-slate-400 hover:text-white transition-colors z-20"
           aria-label="Close"
         >
           <X className="w-8 h-8" />
+        </button>
+
+        {/* Scroll Hint */}
+        <button
+          onClick={scrollToContent}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center bg-white/15 border border-white/15 text-slate-100 shadow-xl shadow-slate-900/50 rounded-full px-4 py-3 hover:bg-white/20 transition-all group z-30 animate-bounce"
+        >
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] mb-2 opacity-90 group-hover:opacity-100 transition-opacity">Scroll for more</span>
+          <ChevronDown size={24} />
         </button>
 
         <div className="w-full max-w-[480px] flex flex-col items-center">
@@ -97,7 +110,12 @@ const Login = ({ onBack }) => {
 
             <div className="text-center text-sm pt-2">
               <span className="text-slate-400">Don't have an account? </span>
-              <a href="#" className="text-blue-500 hover:underline font-medium">Sign up</a>
+              <button 
+                onClick={onSignUp}
+                className="text-blue-500 hover:underline font-medium cursor-pointer"
+              >
+                Sign up
+              </button>
             </div>
 
             <div className="relative py-4 flex items-center justify-center">
@@ -116,7 +134,7 @@ const Login = ({ onBack }) => {
                 <path fill="#34A853" d="M12 24c3.245 0 5.973-1.077 7.964-2.918l-4.662-3.629c-1.118.75-2.545 1.191-3.964 1.191-3.055 0-5.636-2.064-6.564-4.845L.112 17.436C2.112 21.318 6.136 24 12 24z" />
               </svg>
               <div className="flex items-center border-l border-slate-700 pl-3">
-                <span className="text-slate-250">Sign in with Google</span>
+                <span className="text-slate-200">Sign in with Google</span>
               </div>
             </button>
           </form>

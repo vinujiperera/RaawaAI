@@ -1,35 +1,38 @@
 import React from 'react';
+import { ChevronDown } from 'lucide-react';
 
 const Hero = ({ onStart }) => {
-  const scrollDown = () => {
-    window.scrollBy({ top: window.innerHeight, behavior: 'smooth' });
+  const scrollToFooter = () => {
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
   };
 
   return (
-    <div className="relative flex flex-col items-center justify-center pt-24 pb-32 px-4 text-center">
+    <div className="relative flex flex-col items-center pt-4 pb-16 px-4 text-center min-h-[calc(100vh-64px)]">
       {/* Background radial gradient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[600px] bg-blue-500/10 blur-[120px] rounded-full -z-10"></div>
       
-      {/* Version Badge */}
-      <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-12">
-        <span className="text-[10px] font-bold text-[#69D2E9] uppercase tracking-[0.2em]">
-          Multi-Agent Persona Engine V3.1
-        </span>
+      <div className="flex-grow flex flex-col items-center justify-center mb-6">
+        {/* Version Badge */}
+        <div className="inline-flex items-center px-4 py-1.5 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-4">
+          <span className="text-[10px] font-bold text-[#69D2E9] uppercase tracking-[0.2em]">
+            Multi-Agent Persona Engine V3.1
+          </span>
+        </div>
+
+        {/* Main Heading - Preserved font-bold for thinner look */}
+        <h1 className="max-w-5xl text-6xl md:text-8xl font-bold text-slate-100 leading-[1.1] tracking-tight mb-4">
+          Hear the <span className="italic bg-gradient-to-r from-[#49C5E0] to-[#1061CC] bg-clip-text text-transparent">Resonance</span><br />
+          Before the Launch
+        </h1>
+
+        {/* Subtext */}
+        <p className="max-w-xl text-slate-400 text-lg md:text-xl font-medium leading-relaxed mb-6 mx-auto">
+          RAAWA AI is a Digital Laboratory for stress-testing products, laws and policies against a synthetic global public. Prevent brand damage before it happens
+        </p>
       </div>
 
-      {/* Main Heading - Preserved font-bold for thinner look */}
-      <h1 className="max-w-5xl text-6xl md:text-8xl font-bold text-slate-100 leading-[1.1] tracking-tight mb-8">
-        Hear the <span className="italic bg-gradient-to-r from-[#49C5E0] to-[#1061CC] bg-clip-text text-transparent">Resonance</span><br />
-        Before the Launch
-      </h1>
-
-      {/* Subtext */}
-      <p className="max-w-xl text-slate-400 text-lg md:text-xl font-medium leading-relaxed mb-12 mx-auto">
-        RaawaAI is a Digital Laboratory for stress-testing products, laws and policies against a synthetic global public. Prevent brand damage before it happens
-      </p>
-
       {/* Action Buttons */}
-      <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mb-8">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-5 mt-auto mb-8">
         <button 
           onClick={onStart}
           className="group relative flex items-center bg-[#1a4f63] hover:bg-[#236a85] text-white px-8 py-4 rounded-xl text-lg font-bold shadow-2xl shadow-blue-900/20 transition-all hover:scale-105 active:scale-95"
@@ -49,15 +52,12 @@ const Hero = ({ onStart }) => {
         </button>
       </div>
 
-      {/* Scroll Down Button */}
+      {/* Scroll Hint */}
       <button
-        onClick={scrollDown}
-        className="p-3 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white transition-all"
-        aria-label="Scroll down"
+        onClick={scrollToFooter}
+        className="flex flex-col items-center text-slate-600 hover:text-[#49C5E0] transition-colors group mt-4 animate-bounce"
       >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-        </svg>
+        <ChevronDown size={20} />
       </button>
     </div>
   );
