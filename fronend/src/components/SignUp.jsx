@@ -5,10 +5,6 @@ const SignUp = ({ onBack, onSignIn }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const scrollToContent = () => {
-    window.scrollBy({ top: 300, behavior: 'smooth' });
-  };
-
   return (
     <div className="w-full text-slate-100 flex flex-col font-sans">
       {/* Header */}
@@ -33,41 +29,32 @@ const SignUp = ({ onBack, onSignIn }) => {
       </header>
 
       {/* Main content */}
-      <main className="min-h-screen flex flex-col items-center justify-center relative px-6 py-5 pb-40">
+      <main className="flex-grow flex flex-col items-center relative px-6 pt-12 pb-32">
         {/* Close Button */}
         <button 
           onClick={onBack}
-          className="absolute top-6 right-10 text-slate-500 hover:text-white transition-colors p-2 z-40"
+          className="absolute top-4 right-12 text-slate-500 hover:text-white transition-colors p-2 z-20"
           aria-label="Close"
         >
           <X size={32} />
         </button>
 
-        {/* Scroll Hint */}
-        <button
-          onClick={scrollToContent}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center bg-white/10 border border-white/10 text-slate-100 shadow-xl shadow-slate-900/40 rounded-full px-4 py-3 hover:bg-white/20 transition-all group z-30 animate-bounce"
-        >
-          <span className="text-[10px] font-bold uppercase tracking-[0.2em] mb-2 opacity-90 group-hover:opacity-100 transition-opacity">Scroll to see form</span>
-          <ChevronDown size={24} />
-        </button>
-
-        <div className="w-full max-w-xl bg-white/5 border border-white/10 rounded-3xl p-10 backdrop-blur-xl relative overflow-hidden">
+        <div className="w-full max-w-xl bg-white/5 border border-white/10 rounded-3xl p-8 md:p-10 backdrop-blur-xl relative overflow-hidden mt-8">
           {/* Top glow */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-[#49C5E0]/40 to-transparent"></div>
           
-          <div className="flex flex-col items-center mb-8">
+          <div className="flex flex-col items-center mb-6">
             {/* Badge */}
-            <div className="flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#69D2E9]/10 border border-[#69D2E9]/20 mb-6 font-medium text-[#69D2E9] text-[10px] uppercase tracking-widest">
-              <ShieldCheck size={14} />
+            <div className="flex items-center space-x-2 px-4 py-1 rounded-full bg-[#69D2E9]/10 border border-[#69D2E9]/20 mb-4 font-medium text-[#69D2E9] text-[9px] uppercase tracking-widest">
+              <ShieldCheck size={12} />
               <span>Registering as Agent</span>
             </div>
             
-            <h2 className="text-2xl font-bold text-white mb-2">Create Your Account</h2>
-            <p className="text-slate-400 text-sm text-center">Submit simulations and get insights on public sentiment</p>
+            <h2 className="text-xl font-bold text-white mb-2">Create Your Account</h2>
+            <p className="text-slate-400 text-xs text-center">Submit simulations and get insights on public sentiment</p>
           </div>
 
-          <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+          <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
             <div className="space-y-4">
               <div className="group">
                 <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 ml-1">Full Name</label>
@@ -165,8 +152,8 @@ const SignUp = ({ onBack, onSignIn }) => {
               </p>
             </div>
 
-            <button className="w-full bg-gradient-to-r from-[#1061CC] to-[#49C5E0] hover:scale-[1.01] active:scale-[0.99] text-white font-bold py-4 rounded-xl shadow-lg transition-all">
-              Create Account
+            <button className="w-full bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-600 hover:to-blue-800 text-white font-semibold py-3.5 rounded-lg shadow-lg shadow-blue-900/20 transition-all active:scale-[0.98]">
+            Create Agent Account 
             </button>
 
             <div className="text-center mt-6">

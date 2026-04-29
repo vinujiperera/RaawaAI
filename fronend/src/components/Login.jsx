@@ -4,10 +4,6 @@ import { Mail, Lock, Eye, EyeOff, X, ChevronDown } from 'lucide-react';
 const Login = ({ onBack, onSignUp }) => {
   const [showPassword, setShowPassword] = useState(false);
 
-  const scrollToContent = () => {
-    window.scrollBy({ top: 300, behavior: 'smooth' });
-  };
-
   return (
     <div className="w-full text-slate-100 flex flex-col font-sans">
       {/* Header */}
@@ -32,28 +28,19 @@ const Login = ({ onBack, onSignUp }) => {
       </header>
 
       {/* Main content - Forced to fill a large portion of viewport to push footer down */}
-      <main className="min-h-screen flex flex-col items-center justify-center relative px-6 py-12 pb-32">
+      <main className="flex-grow flex flex-col items-center relative px-6 pt-12 pb-32">
         {/* Close Button */}
         <button 
           onClick={onBack}
-          className="absolute top-8 right-12 text-slate-400 hover:text-white transition-colors z-20"
+          className="absolute top-4 right-12 text-slate-400 hover:text-white transition-colors z-20"
           aria-label="Close"
         >
           <X className="w-8 h-8" />
         </button>
 
-        {/* Scroll Hint */}
-        <button
-          onClick={scrollToContent}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center bg-white/15 border border-white/15 text-slate-100 shadow-xl shadow-slate-900/50 rounded-full px-4 py-3 hover:bg-white/20 transition-all group z-30 animate-bounce"
-        >
-          <span className="text-[10px] font-bold uppercase tracking-[0.2em] mb-2 opacity-90 group-hover:opacity-100 transition-opacity">Scroll for more</span>
-          <ChevronDown size={24} />
-        </button>
-
-        <div className="w-full max-w-[480px] flex flex-col items-center">
+        <div className="w-full max-w-[480px] flex flex-col items-center mt-8">
           <h1 className="text-3xl font-medium mb-2 tracking-tight">Welcome Back</h1>
-          <p className="text-blue-500 text-sm mb-12 font-medium">Sign in to your account to continue</p>
+          <p className="text-blue-500 text-sm mb-10 font-medium">Sign in to your account to continue</p>
 
           <form className="w-full space-y-5" onSubmit={(e) => e.preventDefault()}>
             <div className="space-y-1.5">
