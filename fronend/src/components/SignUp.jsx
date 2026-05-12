@@ -1,0 +1,177 @@
+import React, { useState } from 'react';
+import { User, Mail, Building2, Briefcase, Lock, Eye, EyeOff, X, ShieldCheck, ChevronDown } from 'lucide-react';
+
+const SignUp = ({ onBack, onSignIn }) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+  return (
+    <div className="w-full text-slate-100 flex flex-col font-sans">
+      {/* Header */}
+      <header className="w-full border-b border-white/5 py-6 px-12 flex justify-between items-center bg-[#050816]">
+        <div className="flex items-center space-x-3 cursor-pointer group" onClick={onBack}>
+          <div className="w-10 h-10 relative flex items-center justify-center">
+            <svg viewBox="0 0 40 40" className="w-full h-full">
+              <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" strokeWidth="2" className="text-[#49C5E0]" />
+              <path d="M12 28V12H20C24 12 26 14 26 18C26 21 24 23 20 24L26 30V32H23L17 25H15V32H12Z" fill="url(#gradSignUp)" />
+              <defs>
+                <linearGradient id="gradSignUp" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" style={{ stopColor: '#49C5E0', stopOpacity: 1 }} />
+                  <stop offset="100%" style={{ stopColor: '#1061CC', stopOpacity: 1 }} />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          <span className="text-3xl font-bold tracking-tight bg-gradient-to-r from-[#49C5E0] to-[#1061CC] bg-clip-text text-transparent">
+            RAAWA AI
+          </span>
+        </div>
+      </header>
+
+      {/* Main content */}
+      <main className="flex-grow flex flex-col items-center relative px-6 pt-12 pb-32">
+        {/* Close Button */}
+        <button 
+          onClick={onBack}
+          className="absolute top-4 right-12 text-slate-500 hover:text-white transition-colors p-2 z-20"
+          aria-label="Close"
+        >
+          <X size={32} />
+        </button>
+
+        <div className="w-full max-w-xl bg-white/5 border border-white/10 rounded-3xl p-8 md:p-10 backdrop-blur-xl relative overflow-hidden mt-8">
+          {/* Top glow */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-[#49C5E0]/40 to-transparent"></div>
+          
+          <div className="flex flex-col items-center mb-6">
+            {/* Badge */}
+            <div className="flex items-center space-x-2 px-4 py-1 rounded-full bg-[#69D2E9]/10 border border-[#69D2E9]/20 mb-4 font-medium text-[#69D2E9] text-[9px] uppercase tracking-widest">
+              <ShieldCheck size={12} />
+              <span>Registering as Agent</span>
+            </div>
+            
+            <h2 className="text-xl font-bold text-white mb-2">Create Your Account</h2>
+            <p className="text-slate-400 text-xs text-center">Submit simulations and get insights on public sentiment</p>
+          </div>
+
+          <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+            <div className="space-y-4">
+              <div className="group">
+                <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 ml-1">Full Name</label>
+                <div className="relative">
+                  <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-[#69D2E9] transition-colors" size={18} />
+                  <input 
+                    type="text" 
+                    placeholder="Enter your full name" 
+                    className="w-full bg-[#0a0f1d] border border-white/10 rounded-xl py-3.5 pl-12 pr-4 text-sm focus:outline-none focus:ring-1 focus:ring-[#69D2E9]/50 focus:border-[#69D2E9]/50 transition-all placeholder:text-slate-700"
+                  />
+                </div>
+              </div>
+
+              <div className="group">
+                <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 ml-1">Email Address</label>
+                <div className="relative">
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-[#69D2E9] transition-colors" size={18} />
+                  <input 
+                    type="email" 
+                    placeholder="you@example.com" 
+                    className="w-full bg-[#0a0f1d] border border-white/10 rounded-xl py-3.5 pl-12 pr-4 text-sm focus:outline-none focus:ring-1 focus:ring-[#69D2E9]/50 focus:border-[#69D2E9]/50 transition-all placeholder:text-slate-700"
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="group">
+                  <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 ml-1">Company</label>
+                  <div className="relative">
+                    <Building2 className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-[#69D2E9] transition-colors" size={18} />
+                    <input 
+                      type="text" 
+                      placeholder="Your company or institution" 
+                      className="w-full bg-[#0a0f1d] border border-white/10 rounded-xl py-3.5 pl-12 pr-4 text-sm focus:outline-none focus:ring-1 focus:ring-[#69D2E9]/50 focus:border-[#69D2E9]/50 transition-all placeholder:text-slate-700"
+                    />
+                  </div>
+                </div>
+
+                <div className="group">
+                  <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 ml-1">Job Title</label>
+                  <div className="relative">
+                    <Briefcase className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-[#69D2E9] transition-colors" size={18} />
+                    <input 
+                      type="text" 
+                      placeholder="e.g., Product Manager" 
+                      className="w-full bg-[#0a0f1d] border border-white/10 rounded-xl py-3.5 pl-12 pr-4 text-sm focus:outline-none focus:ring-1 focus:ring-[#69D2E9]/50 focus:border-[#69D2E9]/50 transition-all placeholder:text-slate-700"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="group">
+                <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 ml-1">Password</label>
+                <div className="relative">
+                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-[#69D2E9] transition-colors" size={18} />
+                  <input 
+                    type={showPassword ? 'text' : 'password'} 
+                    placeholder="Create a strong password" 
+                    className="w-full bg-[#0a0f1d] border border-white/10 rounded-xl py-3.5 pl-12 pr-12 text-sm focus:outline-none focus:ring-1 focus:ring-[#69D2E9]/50 focus:border-[#69D2E9]/50 transition-all placeholder:text-slate-700"
+                  />
+                  <button 
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors"
+                  >
+                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
+                </div>
+              </div>
+
+              <div className="group">
+                <label className="block text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1.5 ml-1">Confirm Password</label>
+                <div className="relative">
+                  <Lock className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 group-focus-within:text-[#69D2E9] transition-colors" size={18} />
+                  <input 
+                    type={showConfirmPassword ? 'text' : 'password'} 
+                    placeholder="Confirm your password" 
+                    className="w-full bg-[#0a0f1d] border border-white/10 rounded-xl py-3.5 pl-12 pr-12 text-sm focus:outline-none focus:ring-1 focus:ring-[#69D2E9]/50 focus:border-[#69D2E9]/50 transition-all placeholder:text-slate-700"
+                  />
+                  <button 
+                    type="button"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors"
+                  >
+                    {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center space-x-3 mb-6">
+              <input type="checkbox" className="w-4 h-4 rounded border-white/10 bg-[#0a0f1d] text-[#69D2E9] focus:ring-offset-0 focus:ring-0" />
+              <p className="text-[11px] text-slate-400">
+                I agree to the <span className="text-[#69D2E9] cursor-pointer hover:underline">Terms of Service</span> and <span className="text-[#69D2E9] cursor-pointer hover:underline">Privacy Policy</span>
+              </p>
+            </div>
+
+            <button className="w-full bg-gradient-to-r from-blue-700 to-blue-900 hover:from-blue-600 hover:to-blue-800 text-white font-semibold py-3.5 rounded-lg shadow-lg shadow-blue-900/20 transition-all active:scale-[0.98]">
+            Create Agent Account 
+            </button>
+
+            <div className="text-center mt-6">
+              <p className="text-xs text-slate-500">
+                Already have an account?{' '}
+                <span 
+                  onClick={onSignIn}
+                  className="text-[#69D2E9] font-bold cursor-pointer hover:underline ml-1"
+                >
+                  Sign In
+                </span>
+              </p>
+            </div>
+          </form>
+        </div>
+      </main>
+    </div>
+  );
+};
+
+export default SignUp;

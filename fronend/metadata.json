@@ -1,0 +1,11 @@
+{
+  "name": "Pulse Command",
+  "short_name": "Pulse",
+  "description": "Predicting Human Resonance via Multi-Agent Personas",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#050816",
+  "background_color": "#050816",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
+}
