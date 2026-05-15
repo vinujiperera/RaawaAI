@@ -1,8 +1,19 @@
 import React, { useState } from 'react';
 import { Mail, Lock, Eye, EyeOff, X, ChevronDown } from 'lucide-react';
 
-const Login = ({ onBack, onSignUp }) => {
+const Login = ({ onBack, onSignUp, onSignInSuccess }) => {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const scrollToContent = () => {
+    window.scrollBy({ top: 300, behavior: 'smooth' });
+  };
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    onSignInSuccess(email, password);
+  };
 
   return (
     <div className="w-full text-slate-100 flex flex-col font-sans">
@@ -38,11 +49,20 @@ const Login = ({ onBack, onSignUp }) => {
           <X className="w-8 h-8" />
         </button>
 
+        {/* Scroll Hint */}
+        <button
+          onClick={scrollToContent}
+          className="fixed bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center text-slate-500 hover:text-[#49C5E0] transition-colors group z-20 animate-bounce"
+        >
+          <span className="text-[10px] font-bold uppercase tracking-[0.2em] mb-2 opacity-50 group-hover:opacity-100 transition-opacity">Scroll for form</span>
+          <ChevronDown size={24} />
+        </button>
+
         <div className="w-full max-w-[480px] flex flex-col items-center mt-8">
           <h1 className="text-3xl font-medium mb-2 tracking-tight">Welcome Back</h1>
           <p className="text-blue-500 text-sm mb-10 font-medium">Sign in to your account to continue</p>
 
-          <form className="w-full space-y-5" onSubmit={(e) => e.preventDefault()}>
+          <form className="w-full space-y-5" onSubmit={handleSignIn}>
             <div className="space-y-1.5">
               <label className="text-sm font-medium text-slate-300">Email</label>
               <div className="relative group">
@@ -52,6 +72,8 @@ const Login = ({ onBack, onSignUp }) => {
                 <input 
                   type="email" 
                   placeholder="you@example.com" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="w-full bg-[#050816] border border-slate-800 rounded-lg py-3 pl-12 pr-4 focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 outline-none transition-all placeholder:text-slate-600"
                 />
               </div>
@@ -66,6 +88,8 @@ const Login = ({ onBack, onSignUp }) => {
                 <input 
                   type={showPassword ? "text" : "password"} 
                   placeholder="Enter your password" 
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="w-full bg-[#050816] border border-slate-800 rounded-lg py-3 pl-12 pr-12 focus:ring-1 focus:ring-blue-500/50 focus:border-blue-500/50 outline-none transition-all placeholder:text-slate-600"
                 />
                 <button 
@@ -98,6 +122,7 @@ const Login = ({ onBack, onSignUp }) => {
             <div className="text-center text-sm pt-2">
               <span className="text-slate-400">Don't have an account? </span>
               <button 
+                type="button"
                 onClick={onSignUp}
                 className="text-blue-500 hover:underline font-medium cursor-pointer"
               >
